@@ -13,16 +13,29 @@ RUN apt-get -qq update && \
     apt-get -qq install -y software-properties-common curl git build-essential && \
     apt-add-repository -y ppa:ansible/ansible && \
     apt-get -qq update && \
-    apt-get install -y curl git ansible build-essential && \
+    apt-get install -y curl git ansible build-essential sudo && \
     apt-get clean autoclean && \
     apt-get autoremove --yes
 
 FROM base as invisible
 ARG TAGS
-RUN addgroup --gid 1000 alex
-RUN adduser --gecos alex --uid 1000 --gid 1000 --disabled-password alex
-USER alex
-WORKDIR /home/alex
+#https://code.visualstudio.com/remote/advancedcontainers/add-nonroot-user
+ARG USERNAME=alex
+ARG USER_UID=1000
+ARG USER_GID=$USER_UID
+
+# Create the user
+RUN groupadd --gid $USER_GID $USERNAME \
+    && useradd --uid $USER_UID --gid $USER_GID -m $USERNAME \
+    #
+    # [Optional] Add sudo support. Omit if you don't need to install software after connecting.
+    && apt-get update \
+    && apt-get install -y sudo \
+    && echo $USERNAME ALL=\(root\) NOPASSWD:ALL > /etc/sudoers.d/$USERNAME \
+    && chmod 0440 /etc/sudoers.d/$USERNAME
+
+USER $USERNAME
+WORKDIR /home/$USERNAME
 
 FROM invisible
 COPY . .
