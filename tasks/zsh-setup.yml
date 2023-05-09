@@ -16,14 +16,14 @@
 - name: Back up existing ~/.zsh_aliases
   shell: if [ -f ~/.zsh_aliases ]; then mv ~/.zsh_aliases ~/.zsh_aliases.bak ; fi
 
-- name: Copy my .zshrc
-  command: curl -LSso ~/.zshrc https://raw.github.com/ChengLong/configs/master/.zshrc
+#- name: Copy my .zshrc
+#  command: curl -LSso ~/.zshrc https://raw.github.com/ChengLong/configs/master/.zshrc
 
-- name: Copy my .zsh_aliases
-  command: curl -LSso ~/.zsh_aliases https://raw.github.com/ChengLong/configs/master/.zsh_aliases
+#- name: Copy my .zsh_aliases
+  #  command: curl -LSso ~/.zsh_aliases https://raw.github.com/ChengLong/configs/master/.zsh_aliases
 
-- name: Copy my pygmalion.zsh-theme
-  command: curl -LSso ~/.oh-my-zsh/themes/pygmalion.zsh-theme https://raw.github.com/ChengLong/configs/master/pygmalion.zsh-theme
+#- name: Copy my pygmalion.zsh-theme
+#  command: curl -LSso ~/.oh-my-zsh/themes/pygmalion.zsh-theme https://raw.github.com/ChengLong/configs/master/pygmalion.zsh-theme
 
 - name: Get zsh path
   command: which zsh
