@@ -1,5 +1,5 @@
 #use the latest ubuntu image for testing
-FROM mcr.microsoft.com/powershell:lts-7.2-ubuntu-22.04 as base
+FROM ubuntu:latest as base
 
 WORKDIR /usr/local/bin
 
@@ -10,7 +10,7 @@ WORKDIR /usr/local/bin
 ARG DEBIAN_FRONTEND=noninteractive
 RUN apt-get -qq update && \
     apt-get -qq upgrade -y && \
-    apt-get -qq install -y software-properties-common curl git build-essential && \
+    apt-get -qq install -y software-properties-common curl git build-essential vim && \
     apt-add-repository -y ppa:ansible/ansible && \
     apt-get -qq update && \
     apt-get install -y curl git ansible build-essential sudo && \
@@ -39,4 +39,4 @@ WORKDIR /home/$USERNAME
 
 FROM invisible
 COPY . .
-CMD ["pwsh"]
+CMD ["bash"]

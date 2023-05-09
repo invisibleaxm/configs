@@ -1,0 +1,39 @@
+- name: Add Microsoft repository GPG key
+  become: yes
+  apt_key:
+    url: https://packages.microsoft.com/keys/microsoft.asc
+    state: present
+
+- name: Add Microsoft repository
+  become: yes
+  apt_repository:
+    repo: "deb [arch={{ ansible_architecture }}] https://packages.microsoft.com/ubuntu/{{ ansible_distribution_release }} stable main"
+    state: present
+    update_cache: yes
+  vars:
+    ansible_distribution_release: "{{ ansible_distribution_release }}"
+    ansible_architecture: "{{ 'amd64' if 'x86_64' in ansible_processor else 'arm64' }}"
+
+- name: Install PowerShell
+  become: yes
+  apt:
+    name: powershell
+    state: latest
+    update_cache: yes
+
+- name: Create the APT repository (Debian) for azure-cli
+  become: yes
+  apt_repository:
+    repo: "deb [arch={{ ansible_architecture }}]] https://packages.microsoft.com/repos/azure-cli/ {{ansible_distribution_release}} main"
+    filename: "azure-cli"
+    state: present
+  vars:
+    ansible_distribution_release: "{{ ansible_distribution_release }}"
+    ansible_architecture: "{{ 'amd64' if 'x86_64' in ansible_processor else 'arm64' }}"
+
+- name: Install the application package (Debian)
+  become: yes
+  apt:
+    name: "azure-cli"
+    update_cache: yes
+
