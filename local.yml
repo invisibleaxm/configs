@@ -12,4 +12,4 @@
   tasks:
     - include: tasks/core-setup.yml
     - include: tasks/zsh-setup.yml
-    #    - include: tasks/powershell.yml
+    - include: tasks/powershell.yml
