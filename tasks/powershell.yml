@@ -19,3 +19,30 @@
     curl -sL https://aka.ms/InstallAzureCLIDeb | sudo bash
   register: shell_output
 
+
+- name: register azure modules existence
+  shell: pwsh -c "Get-Module -ListAvailable" | awk 'BEGIN{cnt=0} /Azure/{ cnt++ } END{if (cnt >= 1) {print "1"} else {print "0"}}'
+  register: azure_pwsh_module
+  changed_when: false
+
+- name: update pwsh help
+  command: "pwsh -noni -c 'Update-Help'"
+  register: pwsh_update
+  changed_when:
+    - pwsh_update.stdout != ""
+
+- name: install pwsh azure modules
+  command: "{{ item }}"
+  with_items:
+    - "pwsh -noni -c 'Install-Module PSReadLine'"
+    - "pwsh -noni -c 'Install-Module Posh-Git'"
+    - "pwsh -noni -c 'Install-Module Terminal-Icons'"
+    - "pwsh -noni -c 'Install-Module Pester'"
+    - "pwsh -noni -c 'Install-Module psake'"
+    - "pwsh -noni -c 'Install-Module PSScriptAnalyzer'"
+    - "pwsh -noni -c 'Install-Module AZ'"
+  when:
+    - azure_pwsh_module.stdout == "0"
+    #    - pwsh_install_azure_cli|default(false)
+
+
