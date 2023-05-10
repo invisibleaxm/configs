@@ -1,8 +1,10 @@
 # Overview
 
-This repo is an initiall attempt at automating the installation of some commonly used software across my different machines.
+This repo is an initial attempt at automating the installation of some commonly used software across my different machines. It was heavily inspired by a class from ThePrimagen related to developer productivity and how to remove the burden of re-installing your laptop or make it easier to switch between environments.
 
-I will prioritize cli and cross platform tools and their corresponding dotfiles with the intention of automating desktop apps/tools where it makes sense. At any rate, this list may not be comprehensive but will help me keep track of some of the tools i like using. 
+In addition, I want to practice Ansible and if possible powershell dsc for software installation and/or configuration.
+
+I will prioritize CLI and cross platform tools and their corresponding dotfiles with the intention of automating desktop apps/tools where it makes sense. At any rate, this list may not be comprehensive but will help me keep track of some of the tools i like using. 
 
 
 
