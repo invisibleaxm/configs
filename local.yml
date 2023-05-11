@@ -10,6 +10,11 @@
       - install
       - core
   tasks:
-    - include_tasks: tasks/core-setup.yml
+    - include_tasks: tasks/core-setup-{{ansible_os_family}}.yml
+    - include_tasks: tasks/powershell-{{ansible_os_family}}.yml
     - include_tasks: tasks/zsh-setup.yml
-    - include_tasks: tasks/powershell.yml
+    - include_role:
+        name: hussainweb.chezmoi
+      vars:
+        chezmoi_init_url: "invisibleaxm"
+        chezmoi_install_method: "download"
