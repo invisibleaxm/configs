@@ -23,7 +23,6 @@
   apt:
     name:
     - git
-    - fzf
     - htop
     - lsof
     - ccache

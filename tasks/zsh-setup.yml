@@ -56,6 +56,16 @@
   with_items: '{{ users }}'
   when: users is defined
 
+- name: clone zsh-dircolors-solarized for users
+  become: yes
+  become_user: '{{ item.username }}'
+  git:
+    repo: 'https://github.com/joel-porquet/zsh-dircolors-solarized.git'
+    version: master
+    dest: '~/.oh-my-zsh/custom/plugins/zsh-dircolors-solarized'
+  with_items: '{{ users }}'
+  when: users is defined
+
 #- name: Copy my .zshrc
 #  command: curl -LSso ~/.zshrc https://raw.github.com/ChengLong/configs/master/.zshrc
 
