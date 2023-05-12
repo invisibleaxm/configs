@@ -7,14 +7,54 @@
   become: yes
   when: ansible_os_family == "Debian"
 
-- name: Install oh-my-zsh
-  git: repo=https://github.com/robbyrussell/oh-my-zsh dest=~/.oh-my-zsh force=yes
-
 - name: Back up existing ~/.zshrc
   shell: if [ -f ~/.zshrc ]; then mv ~/.zshrc ~/.zshrc.bak ; fi
 
 - name: Back up existing ~/.zsh_aliases
   shell: if [ -f ~/.zsh_aliases ]; then mv ~/.zsh_aliases ~/.zsh_aliases.bak ; fi
+
+- name: clone oh-my-zsh for users
+  become: yes
+  become_user: '{{ item.username }}'
+  git:
+    repo: 'https://github.com/robbyrussell/oh-my-zsh.git'
+    version: master
+    dest: '~/.oh-my-zsh'
+  with_items: '{{ users }}'
+  when: users is defined
+
+#- name: Install oh-my-zsh
+  #  git: repo=https://github.com/robbyrussell/oh-my-zsh dest=~/.oh-my-zsh force=yes
+
+- name: clone powerlevel10k for users
+  become: yes
+  become_user: '{{ item.username }}'
+  git:
+    repo: 'https://github.com/romkatv/powerlevel10k.git'
+    version: master
+    dest: '~/.oh-my-zsh/custom/themes/powerlevel10k'
+  with_items: '{{ users }}'
+  when: users is defined
+
+- name: clone zsh-autosuggestions for users
+  become: yes
+  become_user: '{{ item.username }}'
+  git:
+    repo: 'https://github.com/zsh-users/zsh-autosuggestions.git'
+    version: master
+    dest: '~/.oh-my-zsh/custom/plugins/zsh-autosuggestions'
+  with_items: '{{ users }}'
+  when: users is defined
+
+- name: clone zsh-syntax-highlighting for users
+  become: yes
+  become_user: '{{ item.username }}'
+  git:
+    repo: 'https://github.com/zsh-users/zsh-syntax-highlighting.git'
+    version: master
+    dest: '~/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting'
+  with_items: '{{ users }}'
+  when: users is defined
 
 #- name: Copy my .zshrc
 #  command: curl -LSso ~/.zshrc https://raw.github.com/ChengLong/configs/master/.zshrc
@@ -29,7 +69,15 @@
   command: which zsh
   register: zsh_path
 
-- name: Switch to zsh
-  user: name=alex shell={{ zsh_path.stdout }}
+- name: set default shell for users
   become: yes
+  user:
+    name: '{{ item.username }}'
+    shell: /bin/zsh
+  with_items: '{{ users }}'
+  when: users is defined 
+
+#- name: Switch to zsh
+ #  user: name=alex shell={{ zsh_path.stdout }}
+ #become: yes
 

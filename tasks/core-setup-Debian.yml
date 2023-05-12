@@ -6,17 +6,29 @@
       - cmake
       - wget
       - curl
+      - git
     state: present
 
 - name: Install System Packages 2 (lua, unzip, gettext)
   become: true
   apt:
-    name: [ "lua5.1", "unzip",  "gettext"]
+    name:
+      - lua5.1
+      - unzip
+      - gettext
     state: present
 
 - name: Install System Packages 3 (the rest)
   become: true
   apt:
-    name: [ "fzf","fd", "htop", "golang", "lsof", "ccache", "python3-pip","apt-transport-https","software-properties-common" ]
+    name:
+    - git
+    - fzf
+    - htop
+    - lsof
+    - ccache
+    - python3-pip
+    - apt-transport-https
+    - software-properties-common
     state: present
 

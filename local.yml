@@ -1,5 +1,9 @@
 - hosts: localhost
   pre_tasks:
+  - name: Adds git repo
+    become: yes 
+    apt_repository:
+      repo: ppa:git-core/ppa
   - name: Update Apt
     become: true
     apt:
@@ -11,19 +15,14 @@
       - core
   tasks:
     - include_tasks: tasks/core-setup-{{ansible_os_family}}.yml
-      tags:
-        - neovim
-        - core
     - include_tasks: tasks/powershell-{{ansible_os_family}}.yml
+      when: ansible_architecture == "x86_64"
     - include_tasks: tasks/zsh-setup.yml
-      tags:
-        - neovim
-        - core
+      vars:
+        users:
+            - username: alex
     - include_role:
         name: hussainweb.chezmoi
       vars:
         chezmoi_init_url: "invisibleaxm"
         chezmoi_install_method: "download"
-      tags:
-        - neovim
-        - core
