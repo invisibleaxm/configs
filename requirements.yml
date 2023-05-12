@@ -1,1 +1,8 @@
-- src: hussainweb.chezmoi
+# We are using snap to install fzf and fd
+---
+collections:
+  - name: community.general
+
+roles:
+  - name:  hussainweb.chezmoi
+
