@@ -23,9 +23,6 @@
   with_items: '{{ users }}'
   when: users is defined
 
-#- name: Install oh-my-zsh
-  #  git: repo=https://github.com/robbyrussell/oh-my-zsh dest=~/.oh-my-zsh force=yes
-
 - name: clone powerlevel10k for users
   become: yes
   become_user: '{{ item.username }}'
@@ -66,6 +63,15 @@
   with_items: '{{ users }}'
   when: users is defined
 
+- name: clone zsh-autocomplet for users
+  become: yes
+  become_user: '{{ item.username }}'
+  git:
+    repo: 'https://github.com/marlonrichert/zsh-autocomplete.git'
+    version: master
+    dest: '~/.oh-my-zsh/custom/plugins/zsh-autocomplete'
+  with_items: '{{ users }}'
+  when: users is defined
 
 - name: fetch fzf from github
   become: yes
@@ -81,6 +87,14 @@
   become: yes
   become_user: '{{ item.username }}'
   shell: ~/.fzf/install --no-key-bindings --no-fish --no-completion --no-update-rc
+  with_items: '{{ users }}'
+  when: users is defined
+
+- name: Docker autocompletion
+  become: yes
+  become_user: '{{ item.username}}'
+  shell: |
+    curl -fLo  ~/.oh-my-zsh/plugins/docker/_docker https://raw.githubusercontent.com/docker/cli/master/contrib/completion/zsh/_docker
   with_items: '{{ users }}'
   when: users is defined
 
@@ -104,8 +118,4 @@
     shell: /bin/zsh
   with_items: '{{ users }}'
   when: users is defined 
-
-#- name: Switch to zsh
- #  user: name=alex shell={{ zsh_path.stdout }}
- #become: yes
 
