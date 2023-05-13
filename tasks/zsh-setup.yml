@@ -63,12 +63,12 @@
   with_items: '{{ users }}'
   when: users is defined
 
-- name: clone zsh-autocomplet for users
+- name: clone zsh-autocomplete for users
   become: yes
   become_user: '{{ item.username }}'
   git:
     repo: 'https://github.com/marlonrichert/zsh-autocomplete.git'
-    version: master
+    version: main
     dest: '~/.oh-my-zsh/custom/plugins/zsh-autocomplete'
   with_items: '{{ users }}'
   when: users is defined
