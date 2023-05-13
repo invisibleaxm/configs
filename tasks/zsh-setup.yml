@@ -20,6 +20,8 @@
     repo: 'https://github.com/robbyrussell/oh-my-zsh.git'
     version: master
     dest: '~/.oh-my-zsh'
+    depth: 1
+    force: yes
   with_items: '{{ users }}'
   when: users is defined
 
@@ -30,6 +32,7 @@
     repo: 'https://github.com/romkatv/powerlevel10k.git'
     version: master
     dest: '~/.oh-my-zsh/custom/themes/powerlevel10k'
+    depth: 1
   with_items: '{{ users }}'
   when: users is defined
 
@@ -40,6 +43,7 @@
     repo: 'https://github.com/zsh-users/zsh-autosuggestions.git'
     version: master
     dest: '~/.oh-my-zsh/custom/plugins/zsh-autosuggestions'
+    depth: 1
   with_items: '{{ users }}'
   when: users is defined
 
@@ -50,6 +54,7 @@
     repo: 'https://github.com/zsh-users/zsh-syntax-highlighting.git'
     version: master
     dest: '~/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting'
+    depth: 1
   with_items: '{{ users }}'
   when: users is defined
 
@@ -60,6 +65,7 @@
     repo: 'https://github.com/joel-porquet/zsh-dircolors-solarized.git'
     version: master
     dest: '~/.oh-my-zsh/custom/plugins/zsh-dircolors-solarized'
+    depth: 1
   with_items: '{{ users }}'
   when: users is defined
 
@@ -70,6 +76,7 @@
     repo: 'https://github.com/marlonrichert/zsh-autocomplete.git'
     version: main
     dest: '~/.oh-my-zsh/custom/plugins/zsh-autocomplete'
+    depth: 1
   with_items: '{{ users }}'
   when: users is defined
 
@@ -80,6 +87,7 @@
     repo: 'https://github.com/junegunn/fzf.git'
     dest: ~/.fzf
     version: HEAD # latest
+    depth: 1
   with_items: '{{ users }}'
   when: users is defined
 
@@ -90,13 +98,13 @@
   with_items: '{{ users }}'
   when: users is defined
 
-- name: Docker autocompletion
-  become: yes
-  become_user: '{{ item.username}}'
-  shell: |
-    curl -fLo  ~/.oh-my-zsh/plugins/docker/_docker https://raw.githubusercontent.com/docker/cli/master/contrib/completion/zsh/_docker
-  with_items: '{{ users }}'
-  when: users is defined
+#- name: Docker autocompletion
+  #  become: yes
+  #become_user: '{{ item.username}}'
+  #shell: |
+#  curl -fLo  ~/.oh-my-zsh/plugins/docker/_docker https://raw.githubusercontent.com/docker/cli/master/contrib/completion/zsh/_docker
+  # with_items: '{{ users }}'
+  #when: users is defined
 
 #- name: Copy my .zshrc
 #  command: curl -LSso ~/.zshrc https://raw.github.com/ChengLong/configs/master/.zshrc
