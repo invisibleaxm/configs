@@ -1,9 +1,20 @@
 ---
-- name: install homebrew
-  shell: /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+- name: Check if homebrew is installed
+  block:
+    - name: try using homebrew in check_mode (no changes)
+      homebrew:
+        path: "/usr/local/bin:/opt/homebrew/bin:/home/linuxbrew/.linuxbrew/bin"
+        update_homebrew: true
+      check_mode: true
 
-- name: Homebrew PATH
-  shell: |
-    test -d ~/.linuxbrew && eval "$(~/.linuxbrew/bin/brew shellenv)"
-    test -d /home/linuxbrew/.linuxbrew && eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)
+    - name: Homebrew available
+      debug:
+        msg: Homebrew is installed
+    
+  rescue:
+    - name: install homebrew
+      shell:  |
+        /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+        test -d ~/.linuxbrew && eval "$(~/.linuxbrew/bin/brew shellenv)"
+        test -d /home/linuxbrew/.linuxbrew && eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 
