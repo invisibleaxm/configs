@@ -1,0 +1,12 @@
+---
+- name: Creates directory
+  file:
+    path: "{{ item }}"
+    state: directory
+  loop:
+    - ~/dev/
+    - ~/dev/personal
+    - ~/dev/work
+
+- name: Chezmoi apply
+  shell: chezmoi apply --force

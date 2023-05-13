@@ -6,3 +6,12 @@
       - lazygit
     state: present
 
+- name: clone lazyvim
+  become: yes
+  become_user: '{{ item.username }}'
+  git:
+    repo: 'https://github.com/invisibleaxm/lazyvim.git'
+    version: main
+    dest: '~/.config/nvim'
+  with_items: '{{ users }}'
+  when: users is defined

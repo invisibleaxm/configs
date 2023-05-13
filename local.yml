@@ -30,3 +30,4 @@
       when: ansible_architecture == "x86_64"
     - include_tasks: tasks/neovim-{{ansible_os_family}}.yml
       when: ansible_architecture == "x86_64"
+    - include_tasks: tasks/preferences.yml
