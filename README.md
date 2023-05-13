@@ -12,20 +12,21 @@ I will prioritize CLI and cross platform tools and their corresponding dotfiles 
 
 |   Software             | Description  | Automated      |
 |------------------------|--------------|----------------|
-| git                    | src control  |
-| neovim                 | 1st fav editor   |
-| vscode                 | 2nd fav edit| |
-| powershell             | shell,scripting| partial |
-| az-cli                 | azure, scripting| partial|
-| az functions           | serverless dev| |
+| git                    | src control  | linux |
+| neovim                 | 1st fav editor   | |
+| powershell             | shell,scripting| linux |
+| az-cli                 | azure, scripting| linux|
+| az functions           | serverless dev| linux |
+| ssh-keys               |               |       |
+| gh                     | github        |       |
 
 ## Linux/MacOS
 
 |   Software             | Description | Automated       |
 |------------------------|-------------|-----------------|
-| zsh                    | default shell| yes |
-| oh-my-zsh              | shell enhancements| no|
-| fzf                    | fuzzy finder | |
+| zsh                    | default shell| linux |
+| oh-my-zsh              | shell enhancements| linux|
+| fzf                    | fuzzy finder | linux |
 
 ## Windows/MacOS
 
@@ -33,6 +34,7 @@ I will prioritize CLI and cross platform tools and their corresponding dotfiles 
 |------------------------|------------------------------|
 | discord                | |
 | brave                  | web browser |
+| vscode                 | 2nd fav edit| |
 | edge | web browser|
 | office 365 ||
 | Amazon Music ||
@@ -48,13 +50,12 @@ I will prioritize CLI and cross platform tools and their corresponding dotfiles 
 
 ## WSL/Linux
 
-|   Software             | Description                  |
-|------------------------|------------------------------|
-| mkdocs                 | markdown server              |
-| tmux                   | terminal multiplexer         |
+|   Software             | Description          | Automated   |
+|------------------------|----------------------|-------------|
+| mkdocs                 | markdown server      |             |
+| tmux                   | terminal multiplexer |  linux      |
 
 
-Usually means ubuntu and the following libraries 
 ## Windows Only
 
 |   Software             | Description                  |

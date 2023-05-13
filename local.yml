@@ -26,3 +26,5 @@
       vars:
         chezmoi_init_url: "invisibleaxm"
         chezmoi_install_method: "download"
+    - include_tasks: tasks/homebrew-{{ansible_os_family}}.yml
+      #when: ansible_architecture == "x86_64"

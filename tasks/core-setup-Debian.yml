@@ -29,5 +29,9 @@
     - python3-pip
     - apt-transport-https
     - software-properties-common
+    - tmux
+    - fd-find
+    - ripgrep
+    - gh
     state: present
 

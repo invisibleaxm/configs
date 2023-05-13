@@ -80,19 +80,10 @@
 - name: Run install script
   become: yes
   become_user: '{{ item.username }}'
-  script: ~/.fzf/install --no-key-bindings --no-fish --completion --update-rc
+  shell: ~/.fzf/install --no-key-bindings --no-fish --no-completion --no-update-rc
   with_items: '{{ users }}'
   when: users is defined
 
-- shell: 'ls -l ~/.fzf/shell | grep -e "key-bindings\.zsh$"'
-  register: zsh_binding
-
-- name: Fzf binding
-  lineinfile:
-    path: ~/.zshrc
-    line: ". {{zsh_binding.stdout}}"
-    regex: 'fzf/.*key-bindings\.zsh$'
-    state: present
 #- name: Copy my .zshrc
 #  command: curl -LSso ~/.zshrc https://raw.github.com/ChengLong/configs/master/.zshrc
 
