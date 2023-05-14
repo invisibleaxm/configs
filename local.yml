@@ -1,4 +1,16 @@
 - hosts: localhost
+  vars:
+    allowed_ssh_networks:
+      - 192.168.0.0/24
+    unnecessary_services:
+      - postfix
+      - telnet
+    unnecessary_software:
+      - tcpdump
+      - nmap-ncat
+      - wpa_supplicant
+    users:
+      - username: alex
   pre_tasks:
   - name: Adds git repo
     become: yes 
@@ -18,9 +30,6 @@
     - include_tasks: tasks/powershell-{{ansible_os_family}}.yml
       when: ansible_architecture == "x86_64"
     - include_tasks: tasks/zsh-setup.yml
-      vars:
-        users:
-            - username: alex
     - include_role:
         name: hussainweb.chezmoi
       vars:
@@ -31,3 +40,10 @@
     - include_tasks: tasks/neovim-{{ansible_os_family}}.yml
       when: ansible_architecture == "x86_64"
     - include_tasks: tasks/preferences.yml
+    - include_tasks: tasks/hardening-{{ansible_os_family}}.yml
+
+  handlers:
+  - name: Reload SSH
+    service:
+      name: sshd
+      state: reloaded

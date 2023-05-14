@@ -8,5 +8,46 @@
     - ~/dev/personal
     - ~/dev/work
 
+- name: Install formula foo with 'brew' from cask
+  community.general.homebrew:
+    name: 
+      - bitwarden-cli
+    state: present
+
+- name: Add admin group
+  group:
+    name: admin
+    state: present
+
+- name: adding existing user '{{ user }}' to group sudo
+  user:
+    name: "{{ item.username }}"
+    groups: admin,sudo
+    append: yes
+  become: yes
+  with_items: '{{ users }}'
+  when: users is defined
+
+#- name: Ensure .ssh directory exists.
+#  file:
+#    dest: "{{ dest_key | dirname }}"
+#    mode: 0700
+#    state: directory
+#
+#- name: Install ssh key
+#  copy:
+#    src: "{{ source_key }}"
+#    dest: "{{ dest_key }}"
+#    mode: 0600
+#
+#- name: Install ssh key public
+#  copy:
+#    src: "{{ source_key }}.pub"
+#    dest: "{{ dest_key }}.pub"
+#    mode: 0644
+
+
 - name: Chezmoi apply
   shell: chezmoi apply --force
+
+

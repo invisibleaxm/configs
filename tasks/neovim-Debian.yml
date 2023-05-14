@@ -6,12 +6,26 @@
       - lazygit
     state: present
 
+- name: see if neovim config folder exists
+  stat: 
+    path: ~/.config/nvim
+  register: st
+
+- name: backing up current neovim files
+  shell: |
+    mv ~/.config/nvim ~/.config/nvim.bak
+  when: st.stat.isdir is defined and st.stat.isdir
+
+- name: optional cleanup of neovim folders
+  shell: |
+    # optional but recommended
+    mv ~/.local/share/nvim ~/.local/share/nvim.bak
+    mv ~/.local/state/nvim ~/.local/state/nvim.bak
+    mv ~/.cache/nvim ~/.cache/nvim.bak
+  when: optional is defined
+
 - name: clone lazyvim
-  become: yes
-  become_user: '{{ item.username }}'
   git:
     repo: 'https://github.com/invisibleaxm/lazyvim.git'
     version: main
     dest: '~/.config/nvim'
-  with_items: '{{ users }}'
-  when: users is defined
