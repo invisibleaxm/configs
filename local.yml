@@ -11,6 +11,7 @@
       - wpa_supplicant
     users:
       - username: alex
+    email: me@mail.com
   pre_tasks:
   - name: Adds git repo
     become: yes 
@@ -40,7 +41,7 @@
     - include_tasks: tasks/neovim-{{ansible_os_family}}.yml
       when: ansible_architecture == "x86_64"
     - include_tasks: tasks/preferences.yml
-    - include_tasks: tasks/hardening-{{ansible_os_family}}.yml
+   #- include_tasks: tasks/hardening-{{ansible_os_family}}.yml
 
   handlers:
   - name: Reload SSH

@@ -8,16 +8,11 @@
     - ~/dev/personal
     - ~/dev/work
 
-- name: Install formula foo with 'brew' from cask
-  community.general.homebrew:
-    name: 
-      - bitwarden-cli
-    state: present
-
 - name: Add admin group
   group:
     name: admin
     state: present
+  become: yes
 
 - name: adding existing user '{{ user }}' to group sudo
   user:

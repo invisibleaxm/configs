@@ -114,6 +114,18 @@
 
 #- name: Copy my pygmalion.zsh-theme
 #  command: curl -LSso ~/.oh-my-zsh/themes/pygmalion.zsh-theme https://raw.github.com/ChengLong/configs/master/pygmalion.zsh-theme
+- name: Creates directory
+  file:
+    path: "{{ item }}"
+    state: directory
+  loop:
+    - ~/.config/
+    - ~/.config/chezmoi
+
+- name: Add chemoi template 
+  ansible.builtin.template:
+    src: templates/chezmoi.j2
+    dest: ~/.config/chezmoi/chezmoi.toml
 
 - name: Get zsh path
   command: which zsh

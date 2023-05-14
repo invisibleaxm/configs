@@ -18,3 +18,10 @@
         test -d ~/.linuxbrew && eval "$(~/.linuxbrew/bin/brew shellenv)"
         test -d /home/linuxbrew/.linuxbrew && eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 
+- name: Install formula foo with 'brew' from cask
+  community.general.homebrew:
+    name: 
+      - bitwarden-cli
+    state: present
+  when: ansible_architecture == "x86_64"
+
