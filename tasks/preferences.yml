@@ -40,7 +40,17 @@
 #    src: "{{ source_key }}.pub"
 #    dest: "{{ dest_key }}.pub"
 #    mode: 0644
+- name: Install mkdocs
+  become: true
+  apt:
+    name:
+    - mkdocs
+    state: present
 
+- name: Install material for Python 3.3 specifically, using the 'pip3.3' executable
+  ansible.builtin.pip:
+    name: mkdocs-material
+    executable: pip3
 
 - name: Chezmoi apply
   shell: chezmoi apply --force
