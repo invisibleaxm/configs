@@ -4,13 +4,28 @@
     dest: /tmp/packages-microsoft-prod.deb
 
 - name: Install MS product repository
-  apt: deb=/tmp/packages-microsoft-prod.deb
+  apt: 
+    deb: /tmp/packages-microsoft-prod.deb
+  become: true
+
+- name: Copy preferences to install dotnet from microsoft repo
+  copy:
+    src: etc/apt/preferences
+    dest: /etc/apt/preferences
+    force: true
   become: true
 
 - name: Install PowerShell
   become: yes
   apt:
     name: powershell
+    state: latest
+    update_cache: yes
+
+- name: Install dotnet-sdk 7
+  become: yes
+  apt:
+    name: dotnet-sdk-7.0
     state: latest
     update_cache: yes
 

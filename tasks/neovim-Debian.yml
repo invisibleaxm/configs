@@ -13,7 +13,8 @@
 
 - name: backing up current neovim files
   shell: |
-    mv ~/.config/nvim ~/.config/nvim.bak
+    mv ~/.config/nvim ~/.config/nvim.bak.$$
+    rm -rf ~/.config/nvim
   when: st.stat.isdir is defined and st.stat.isdir
 
 - name: optional cleanup of neovim folders
@@ -23,6 +24,14 @@
     mv ~/.local/state/nvim ~/.local/state/nvim.bak
     mv ~/.cache/nvim ~/.cache/nvim.bak
   when: optional is defined
+
+- name: configure bicep lsp server
+  shell: |
+    (cd $(mktemp -d) \
+    && curl -fLO https://github.com/Azure/bicep/releases/latest/download/bicep-langserver.zip \
+    && rm -rf /usr/local/bin/bicep-langserver \
+    && unzip -d /usr/local/bin/bicep-langserver bicep-langserver.zip)
+  become: yes
 
 - name: clone lazyvim
   git:

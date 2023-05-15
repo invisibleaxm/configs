@@ -122,7 +122,7 @@
     - ~/.config/
     - ~/.config/chezmoi
 
-- name: Add chemoi template 
+- name: Add chemoi template
   ansible.builtin.template:
     src: templates/chezmoi.j2
     dest: ~/.config/chezmoi/chezmoi.toml

@@ -28,7 +28,12 @@
       - core
   tasks:
     - include_tasks: tasks/core-setup-{{ansible_os_family}}.yml
-    - include_tasks: tasks/powershell-{{ansible_os_family}}.yml
+    - name: Powershell (x86 setup)
+      include_tasks:
+        file: tasks/powershell-{{ansible_os_family}}.yml
+        apply:
+          tags: powershell
+      tags: powershell
       when: ansible_architecture == "x86_64"
     - include_tasks: tasks/zsh-setup.yml
     - include_role:
@@ -38,7 +43,13 @@
         chezmoi_install_method: "download"
     - include_tasks: tasks/homebrew-{{ansible_os_family}}.yml
       when: ansible_architecture == "x86_64"
-    - include_tasks: tasks/neovim-{{ansible_os_family}}.yml
+    - name: Neovim setup
+      include_tasks: 
+        file: tasks/neovim-{{ansible_os_family}}.yml
+        apply:
+          tags: neovim
+      tags:
+        - neovim
       when: ansible_architecture == "x86_64"
     - include_tasks: tasks/preferences.yml
    #- include_tasks: tasks/hardening-{{ansible_os_family}}.yml

@@ -2,4 +2,4 @@
 
 sudo add-apt-repository universe -y
 ansible-galaxy install -r requirements.yml
-ansible-playbook local.yml
+ansible-playbook local.yml "$@"
