@@ -35,6 +35,5 @@
     - ripgrep
     - gh
     - tree
-    - mkdocs
     state: present
 
