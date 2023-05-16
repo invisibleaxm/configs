@@ -22,6 +22,7 @@
   community.general.homebrew:
     name: 
       - bitwarden-cli
+      - thefuck
     state: present
   when: ansible_architecture == "x86_64"
 
