@@ -1,20 +1,20 @@
 ---
 - name: Git personal setup email
-  become: yes
-  become_user: '{{ item.username }}'
+  become: true
+  become_user: "{{ item.username }}"
   git_config:
     name: user.email
     scope: global
-    value: '{{ item.email}}'
-  with_items: '{{ users }}'
+    value: "{{ item.email}}"
+  with_items: "{{ users }}"
   when: users is defined
 
 - name: Git personal setup name
-  become: yes
-  become_user: '{{ item.username }}'
+  become: true
+  become_user: "{{ item.username }}"
   git_config:
     name: user.name
     scope: global
-    value:  '{{ item.name }}'
-  with_items: '{{ users }}'
+    value: "{{ item.name }}"
+  with_items: "{{ users }}"
   when: users is defined

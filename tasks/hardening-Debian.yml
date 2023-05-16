@@ -1,8 +1,8 @@
 - name: Remove Root SSH Configuration
-  file: 
+  file:
     path: /root/.ssh
     state: absent
-  become: yes
+  become: true
 
 - name: Add hardened SSH config
   copy:
@@ -12,7 +12,6 @@
     group: root
     mode: 0600
   notify: Reload SSH
-
 
 - name: Add hardened SSH config
   copy:
@@ -59,4 +58,4 @@
     state: stopped
     enabled: no
   with_items: "{{ unnecessary_services }}"
-  ignore_errors: yes
+  ignore_errors: true

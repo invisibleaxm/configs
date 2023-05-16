@@ -1,90 +1,98 @@
 # Overview
 
-This repo is an initial attempt at automating the installation of some commonly used software across my different machines. It was heavily inspired by a class from ThePrimagen related to developer productivity and how to remove the burden of re-installing your laptop or make it easier to switch between environments.
+This repo is an initial attempt at automating the installation of some commonly
+used software across my different machines. It was heavily inspired by a class
+from ThePrimagen related to developer productivity and how to remove the
+burden of re-installing your laptop or make it easier to switch between
+environments.
 
-In addition, I want to practice Ansible and if possible powershell dsc for software installation and/or configuration.
+In addition, I want to practice Ansible and if possible powershell dsc for software
+installation and/or configuration.
 
-I will prioritize CLI and cross platform tools and their corresponding dotfiles with the intention of automating desktop apps/tools where it makes sense. At any rate, this list may not be comprehensive but will help me keep track of some of the tools i like using. 
-
-
+I will prioritize CLI and cross platform tools and their corresponding dotfiles
+with the intention of automating desktop apps/tools where it makes sense. At any
+rate, this list may not be comprehensive but will help me keep track of some of
+the tools i like using.
 
 ## Universal
 
-|   Software             | Description  | Automated      |
-|------------------------|--------------|----------------|
-| git                    | src control  | linux |
-| neovim                 | 1st fav editor   | |
-| powershell             | shell,scripting| linux |
-| az-cli                 | azure, scripting| linux|
-| az functions           | serverless dev| linux |
-| ssh-keys               |               |       |
-| gh                     | github        |       |
+| Software     | Description      | Automated |
+| ------------ | ---------------- | --------- |
+| git          | src control      | linux     |
+| neovim       | 1st fav editor   |           |
+| powershell   | shell,scripting  | linux     |
+| az-cli       | azure, scripting | linux     |
+| az functions | serverless dev   | linux     |
+| ssh-keys     |                  |           |
+| gh           | github           |           |
 
 ## Linux/MacOS
 
-|   Software             | Description | Automated       |
-|------------------------|-------------|-----------------|
-| zsh                    | default shell| linux |
-| oh-my-zsh              | shell enhancements| linux|
-| fzf                    | fuzzy finder | linux |
+| Software  | Description        | Automated |
+| --------- | ------------------ | --------- |
+| zsh       | default shell      | linux     |
+| oh-my-zsh | shell enhancements | linux     |
+| fzf       | fuzzy finder       | linux     |
+| fd        | finder cli         | linux     |
+| thefuck   | cli fix mistakes   | linux     |
 
 ## Windows/MacOS
 
-|   Software             | Description                  |
-|------------------------|------------------------------|
-| discord                | |
-| brave                  | web browser |
-| vscode                 | 2nd fav edit| |
-| edge | web browser|
-| office 365 ||
-| Amazon Music ||
-| SnagIt | |
-| Authy | |
-| ccleaner |
-| Dell display link | dock |
-| hp software||
-| git kraken ||
-| ultimaker | 3d printer software|
-| bitwarden | password escrow| 
-
+| Software          | Description         |     |
+| ----------------- | ------------------- | --- |
+| discord           |                     |     |
+| brave             | web browser         |     |
+| vscode            | 2nd fav edit        |     |
+| edge              | web browser         |     |
+| office 365        |                     |     |
+| Amazon Music      |                     |     |
+| SnagIt            |                     |     |
+| Authy             |                     |     |
+| ccleaner          |                     |     |
+| Dell display link | dock                |     |
+| hp software       |                     |     |
+| git kraken        |                     |     |
+| ultimaker         | 3d printer software |     |
+| bitwarden         | password escrow     |     |
 
 ## WSL/Linux
 
-|   Software             | Description          | Automated   |
-|------------------------|----------------------|-------------|
-| mkdocs                 | markdown server      |             |
-| tmux                   | terminal multiplexer |  linux      |
-
+| Software | Description          | Automated |
+| -------- | -------------------- | --------- |
+| mkdocs   | markdown server      |           |
+| tmux     | terminal multiplexer | linux     |
 
 ## Windows Only
 
-|   Software             | Description                  |
-|------------------------|------------------------------|
-| Visual Studio          | IDE                          |
-| Windows Terminal       | term emulator                |
-| Storage Explorer       | azure storage explorer       |
-| Servicebus explorer    |                              |
-| winget                 | |
-| chocolately            | |
-| scoop                  | |
-| windows cred manager   | |
-| ditto | clipboard manager |
-| putty | |
+| Software             | Description            |
+| -------------------- | ---------------------- |
+| Visual Studio        | IDE                    |
+| Windows Terminal     | term emulator          |
+| Storage Explorer     | azure storage explorer |
+| Servicebus explorer  |                        |
+| winget               |                        |
+| chocolately          |                        |
+| scoop                |                        |
+| windows cred manager |                        |
+| ditto                | clipboard manager      |
+| putty                |                        |
 
 ## MacOS
 
-Slowly but surely working towards migrating my primary development to a mac for now I am documenting additional software i am using
+Slowly but surely working towards migrating my primary development to a mac for
+now I am documenting additional software i am using
 
-| Software               | Description                  |
-|------------------------|------------------------------|
-| brew                   | package manager              |
-| iterm2                 | terminal emulator            |
-| alttab                 | better window switchin       |
-| rectangle              | basic window manager         |
-| docker desktop         | containers                   |
-| copy clip              | clipboard manager            |
+| Software       | Description            |
+| -------------- | ---------------------- |
+| brew           | package manager        |
+| iterm2         | terminal emulator      |
+| alttab         | better window switchin |
+| rectangle      | basic window manager   |
+| docker desktop | containers             |
+| copy clip      | clipboard manager      |
 
 The following is a mess as i have been experimenting quite a bit and will refine this at a later point but here we have it
+
 ```bash
 main ❯ brew list                                                                                                                                           20:00:17
 ==> Formulae
@@ -118,79 +126,79 @@ alfred                          fig                             git-credential-m
 alt-tab                         font-hack-nerd-font             insomnia                        keycastr                        rectangle
 ```
 
-
 The following is a list of winget packages , needs review
 
 ```bash
-Name                                                                                              Id                                                  
+Name                                                                                              Id
 ------------------------------------------------------------------------------------------------------------------------------------------------------
-Visual Studio Enterprise 2022                                                                     Microsoft.VisualStudio.2022.Enterprise              
-Bitwarden                                                                                         Bitwarden.Bitwarden                                 
-7-Zip 22.01 (x64)                                                                                 7zip.7zip                                           
-Amazon Music                                                                                      Amazon.Music                                        
-Amazon Kindle                                                                                     Amazon.Kindle                                       
-Brave                                                                                             Brave.Brave                                         
-CCleaner                                                                                          Piriform.CCleaner.ProTrial                          
-Discord                                                                                           Discord.Discord                                     
-Ditto 3.24.238.0                                                                                  Ditto.Ditto                                         
-Docker Desktop                                                                                    Docker.DockerDesktop                                
-Git                                                                                               Git.Git                                             
-Microsoft Edge WebView2 Runtime                                                                   Microsoft.EdgeWebView2Runtime                       
-Windows Terminal                                                                                  Microsoft.WindowsTerminal                           
-Mozilla Firefox (x64 en-US)                                                                       Mozilla.Firefox                                     
-Notepad++ (64-bit x64)                                                                            Notepad++.Notepad++                                 
-Microsoft 365 Apps for enterprise - en-us                                                         Microsoft.Office                                    
-Oh My Posh version 15.3.0                                                                         JanDeDobbeleer.OhMyPosh                             
-Microsoft OneDrive                                                                                Microsoft.OneDrive                                  
-Postman x86_64 10.13.0                                                                            Postman.Postman                                     
-Rustup: the Rust toolchain installer                                                              Rustlang.Rustup                                     
-SteelSeries GG 37.0.0                                                                             SteelSeries.GG                                      
-Microsoft Teams                                                                                   Microsoft.Teams                                     
-VcXsrv                                                                                            marha.VcXsrv                                        
-WhatsApp (Outdated)                                                                               WhatsApp.WhatsApp                                   
-WinDirStat 1.1.2                                                                                  WinDirStat.WinDirStat                               
-XMind 8 Update 9 (v3.7.9)                                                                         Xmind.Xmind.8                                      
-Zoom                                                                                              Zoom.Zoom                                           
-Authy Desktop                                                                                     Twilio.Authy                                        
-GitKraken                                                                                         Axosoft.GitKraken                                   
-WinSCP 5.21.8                                                                                     WinSCP.WinSCP                                       
-Microsoft SQL Server Management Studio - 18.12.1                                                  Microsoft.SQLServerManagementStudio                 
-PowerShell 7-x64                                                                                  Microsoft.PowerShell                                
-PuTTY release 0.78 (64-bit)                                                                       PuTTY.PuTTY                                         
-Microsoft Windows Desktop Runtime - 6.0.15 (x86)                                                  Microsoft.DotNet.DesktopRuntime.6                   
-GitHub CLI                                                                                        GitHub.cli                                          
-Microsoft ASP.NET Core 6.0.15 - Shared Framework (x86)                                            Microsoft.DotNet.AspNetCore.6                       
-Microsoft System CLR Types for SQL Server 2019                                                    Microsoft.CLRTypesSQLServer.2019                    
-Snagit 2023                                                                                       TechSmith.Snagit.2023                               
-Microsoft ASP.NET Core 3.1.32 - Shared Framework (x64)                                            Microsoft.DotNet.AspNetCore.3_1                     
-Microsoft Azure CLI                                                                               Microsoft.AzureCLI                                 
-DisplayLink Graphics                                                                              DisplayLink.GraphicsDriver                          
-Microsoft Visual C++ 2015-2022 Redistributable (x86) - 14.34.31931                                Microsoft.VCRedist.2015+.x86                        
-Teams Machine-Wide Installer                                                                      Microsoft.Teams                                     
-Microsoft Visual Studio Code (User)                                                               Microsoft.VisualStudioCode                          
-Microsoft .NET Core Runtime - 3.1.32 (x64)                                                        Microsoft.DotNet.Runtime.3_1                        
-Bicep CLI version 0.14.6.61914                                                                    Microsoft.Bicep                                     
-Microsoft Azure Storage Explorer version 1.28.1                                                   Microsoft.Azure.StorageExplorer                     
-Pulumi                                                                                            Pulumi.Pulumi                                       
-Microsoft SQL Server Management Studio - 19.0.2                                                   Microsoft.SQLServerManagementStudio                 
-Microsoft Windows Desktop Runtime - 6.0.16 (x64)                                                  Microsoft.DotNet.DesktopRuntime.6                   
-Microsoft .NET SDK 7.0.202 (x64)                                                                  Microsoft.DotNet.SDK.6                              
-Google Chrome                                                                                     Google.Chrome                                       
-Microsoft SQL Server 2012 Native Client                                                           Microsoft.SQLServer2012NativeClient                 
-Microsoft Visual C++ 2013 Redistributable (x86) - 12.0.40664                                      Microsoft.VCRedist.2013.x86                         
-Node.js                                                                                           OpenJS.NodeJS                                       
-Adobe Acrobat Reader                                                                              Adobe.Acrobat.Reader.32-bit                         
-Microsoft Web Deploy 4.0                                                                          Microsoft.WebDeploy                                 
-Local Administrator Password Solution                                                             Microsoft.LAPS                                      
-AWS Command Line Interface v2                                                                     Amazon.AWSCLI                                       
-Microsoft Edge                                                                                    Microsoft.Edge                                      
-Azure Functions Core Tools - 4.0.5095 (x64)                                                       Microsoft.Azure.FunctionsCoreTools                  
-Microsoft .NET SDK 6.0.310 (x64)                                                                  Microsoft.DotNet.SDK.6                              
-Microsoft .NET SDK 6.0.407 (x64)                                                                  Microsoft.DotNet.SDK.6                              
-Microsoft Visual C++ 2015-2022 Redistributable (x64) - 14.34.31931                                Microsoft.VCRedist.2015+.x64                        
-Python 3.10.9 (64-bit)                                                                            Python.Python.3.10                                  
-PowerToys (Preview) x64                                                                           Microsoft.PowerToys                                 
+Visual Studio Enterprise 2022                                                                     Microsoft.VisualStudio.2022.Enterprise
+Bitwarden                                                                                         Bitwarden.Bitwarden
+7-Zip 22.01 (x64)                                                                                 7zip.7zip
+Amazon Music                                                                                      Amazon.Music
+Amazon Kindle                                                                                     Amazon.Kindle
+Brave                                                                                             Brave.Brave
+CCleaner                                                                                          Piriform.CCleaner.ProTrial
+Discord                                                                                           Discord.Discord
+Ditto 3.24.238.0                                                                                  Ditto.Ditto
+Docker Desktop                                                                                    Docker.DockerDesktop
+Git                                                                                               Git.Git
+Microsoft Edge WebView2 Runtime                                                                   Microsoft.EdgeWebView2Runtime
+Windows Terminal                                                                                  Microsoft.WindowsTerminal
+Mozilla Firefox (x64 en-US)                                                                       Mozilla.Firefox
+Notepad++ (64-bit x64)                                                                            Notepad++.Notepad++
+Microsoft 365 Apps for enterprise - en-us                                                         Microsoft.Office
+Oh My Posh version 15.3.0                                                                         JanDeDobbeleer.OhMyPosh
+Microsoft OneDrive                                                                                Microsoft.OneDrive
+Postman x86_64 10.13.0                                                                            Postman.Postman
+Rustup: the Rust toolchain installer                                                              Rustlang.Rustup
+SteelSeries GG 37.0.0                                                                             SteelSeries.GG
+Microsoft Teams                                                                                   Microsoft.Teams
+VcXsrv                                                                                            marha.VcXsrv
+WhatsApp (Outdated)                                                                               WhatsApp.WhatsApp
+WinDirStat 1.1.2                                                                                  WinDirStat.WinDirStat
+XMind 8 Update 9 (v3.7.9)                                                                         Xmind.Xmind.8
+Zoom                                                                                              Zoom.Zoom
+Authy Desktop                                                                                     Twilio.Authy
+GitKraken                                                                                         Axosoft.GitKraken
+WinSCP 5.21.8                                                                                     WinSCP.WinSCP
+Microsoft SQL Server Management Studio - 18.12.1                                                  Microsoft.SQLServerManagementStudio
+PowerShell 7-x64                                                                                  Microsoft.PowerShell
+PuTTY release 0.78 (64-bit)                                                                       PuTTY.PuTTY
+Microsoft Windows Desktop Runtime - 6.0.15 (x86)                                                  Microsoft.DotNet.DesktopRuntime.6
+GitHub CLI                                                                                        GitHub.cli
+Microsoft ASP.NET Core 6.0.15 - Shared Framework (x86)                                            Microsoft.DotNet.AspNetCore.6
+Microsoft System CLR Types for SQL Server 2019                                                    Microsoft.CLRTypesSQLServer.2019
+Snagit 2023                                                                                       TechSmith.Snagit.2023
+Microsoft ASP.NET Core 3.1.32 - Shared Framework (x64)                                            Microsoft.DotNet.AspNetCore.3_1
+Microsoft Azure CLI                                                                               Microsoft.AzureCLI
+DisplayLink Graphics                                                                              DisplayLink.GraphicsDriver
+Microsoft Visual C++ 2015-2022 Redistributable (x86) - 14.34.31931                                Microsoft.VCRedist.2015+.x86
+Teams Machine-Wide Installer                                                                      Microsoft.Teams
+Microsoft Visual Studio Code (User)                                                               Microsoft.VisualStudioCode
+Microsoft .NET Core Runtime - 3.1.32 (x64)                                                        Microsoft.DotNet.Runtime.3_1
+Bicep CLI version 0.14.6.61914                                                                    Microsoft.Bicep
+Microsoft Azure Storage Explorer version 1.28.1                                                   Microsoft.Azure.StorageExplorer
+Pulumi                                                                                            Pulumi.Pulumi
+Microsoft SQL Server Management Studio - 19.0.2                                                   Microsoft.SQLServerManagementStudio
+Microsoft Windows Desktop Runtime - 6.0.16 (x64)                                                  Microsoft.DotNet.DesktopRuntime.6
+Microsoft .NET SDK 7.0.202 (x64)                                                                  Microsoft.DotNet.SDK.6
+Google Chrome                                                                                     Google.Chrome
+Microsoft SQL Server 2012 Native Client                                                           Microsoft.SQLServer2012NativeClient
+Microsoft Visual C++ 2013 Redistributable (x86) - 12.0.40664                                      Microsoft.VCRedist.2013.x86
+Node.js                                                                                           OpenJS.NodeJS
+Adobe Acrobat Reader                                                                              Adobe.Acrobat.Reader.32-bit
+Microsoft Web Deploy 4.0                                                                          Microsoft.WebDeploy
+Local Administrator Password Solution                                                             Microsoft.LAPS
+AWS Command Line Interface v2                                                                     Amazon.AWSCLI
+Microsoft Edge                                                                                    Microsoft.Edge
+Azure Functions Core Tools - 4.0.5095 (x64)                                                       Microsoft.Azure.FunctionsCoreTools
+Microsoft .NET SDK 6.0.310 (x64)                                                                  Microsoft.DotNet.SDK.6
+Microsoft .NET SDK 6.0.407 (x64)                                                                  Microsoft.DotNet.SDK.6
+Microsoft Visual C++ 2015-2022 Redistributable (x64) - 14.34.31931                                Microsoft.VCRedist.2015+.x64
+Python 3.10.9 (64-bit)                                                                            Python.Python.3.10
+PowerToys (Preview) x64                                                                           Microsoft.PowerToys
 ```
+
 Other items to review
 
 ```bash
