@@ -1,0 +1,22 @@
+# pip install mkdocs
+# pip install mkdocs
+# pip install mkdocs-pdf-export-plugin
+# pip install mkdocs-git-revision-date-plugin
+# pip install mkdocs-git-authors-plugin
+# pip install weasyprint
+# pip install -U Jinja2
+# pip install mkdocs-with-pdf > /dev/null 2>&1
+# pip install mkdocs-material
+# pip install -U mkdocs-mermaid2-plugin
+# pip install markdown
+# pip install pymdown-extensions
+# pip install Pygments
+# pip install mkdocs-git-revision-date-localized-plugin
+# pip install pandoc
+# pip install mkdocs-pandoc-plugin
+# pip install mkdocs-pdf-with-js-plugin
+# pip install mkdocs-table-reader-plugin
+# pip install mdx_truly_sane_lists
+# pip install mkdocs-simple-hooks
+# pip install mkdocs-include-dir-to-nav
+#
