@@ -1,11 +1,10 @@
 - name: Install zsh (with dependencies)
-  apt:
-    name=zsh
+  apt: name=zsh
     state=present
     update_cache=yes
-  with_items: dependencies
-  become: yes
+  become: true
   when: ansible_os_family == "Debian"
+  # with_items: {{ dependencies }}
 
 - name: Back up existing ~/.zshrc
   shell: if [ -f ~/.zshrc ]; then mv ~/.zshrc ~/.zshrc.bak && touch ~/.zshrc; fi
@@ -14,103 +13,103 @@
   shell: if [ -f ~/.zsh_aliases ]; then mv ~/.zsh_aliases ~/.zsh_aliases.bak ; fi
 
 - name: clone oh-my-zsh for users
-  become: yes
-  become_user: '{{ item.username }}'
+  become: true
+  become_user: "{{ item.username }}"
   git:
-    repo: 'https://github.com/robbyrussell/oh-my-zsh.git'
+    repo: "https://github.com/robbyrussell/oh-my-zsh.git"
     version: master
-    dest: '~/.oh-my-zsh'
+    dest: "~/.oh-my-zsh"
     depth: 1
     force: yes
-  with_items: '{{ users }}'
+  with_items: "{{ users }}"
   when: users is defined
 
 - name: clone powerlevel10k for users
-  become: yes
-  become_user: '{{ item.username }}'
+  become: true
+  become_user: "{{ item.username }}"
   git:
-    repo: 'https://github.com/romkatv/powerlevel10k.git'
+    repo: "https://github.com/romkatv/powerlevel10k.git"
     version: master
-    dest: '~/.oh-my-zsh/custom/themes/powerlevel10k'
+    dest: "~/.oh-my-zsh/custom/themes/powerlevel10k"
     depth: 1
-  with_items: '{{ users }}'
+  with_items: "{{ users }}"
   when: users is defined
 
 - name: clone zsh-autosuggestions for users
-  become: yes
-  become_user: '{{ item.username }}'
+  become: true
+  become_user: "{{ item.username }}"
   git:
-    repo: 'https://github.com/zsh-users/zsh-autosuggestions.git'
+    repo: "https://github.com/zsh-users/zsh-autosuggestions.git"
     version: master
-    dest: '~/.oh-my-zsh/custom/plugins/zsh-autosuggestions'
+    dest: "~/.oh-my-zsh/custom/plugins/zsh-autosuggestions"
     depth: 1
-  with_items: '{{ users }}'
+  with_items: "{{ users }}"
   when: users is defined
 
 - name: clone zsh-syntax-highlighting for users
-  become: yes
-  become_user: '{{ item.username }}'
+  become: true
+  become_user: "{{ item.username }}"
   git:
-    repo: 'https://github.com/zsh-users/zsh-syntax-highlighting.git'
+    repo: "https://github.com/zsh-users/zsh-syntax-highlighting.git"
     version: master
-    dest: '~/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting'
+    dest: "~/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting"
     depth: 1
-  with_items: '{{ users }}'
+  with_items: "{{ users }}"
   when: users is defined
 
 - name: clone zsh-dircolors-solarized for users
-  become: yes
-  become_user: '{{ item.username }}'
+  become: true
+  become_user: "{{ item.username }}"
   git:
-    repo: 'https://github.com/joel-porquet/zsh-dircolors-solarized.git'
+    repo: "https://github.com/joel-porquet/zsh-dircolors-solarized.git"
     version: master
-    dest: '~/.oh-my-zsh/custom/plugins/zsh-dircolors-solarized'
+    dest: "~/.oh-my-zsh/custom/plugins/zsh-dircolors-solarized"
     depth: 1
-  with_items: '{{ users }}'
+  with_items: "{{ users }}"
   when: users is defined
 
 - name: clone zsh-autocomplete for users
-  become: yes
-  become_user: '{{ item.username }}'
+  become: true
+  become_user: "{{ item.username }}"
   git:
-    repo: 'https://github.com/marlonrichert/zsh-autocomplete.git'
+    repo: "https://github.com/marlonrichert/zsh-autocomplete.git"
     version: main
-    dest: '~/.oh-my-zsh/custom/plugins/zsh-autocomplete'
+    dest: "~/.oh-my-zsh/custom/plugins/zsh-autocomplete"
     depth: 1
-  with_items: '{{ users }}'
+  with_items: "{{ users }}"
   when: users is defined
 
 - name: fetch fzf from github
-  become: yes
-  become_user: '{{ item.username }}'
+  become: true
+  become_user: "{{ item.username }}"
   git:
-    repo: 'https://github.com/junegunn/fzf.git'
+    repo: "https://github.com/junegunn/fzf.git"
     dest: ~/.fzf
     version: HEAD # latest
     depth: 1
-  with_items: '{{ users }}'
+  with_items: "{{ users }}"
   when: users is defined
 
 - name: Run install script
-  become: yes
-  become_user: '{{ item.username }}'
+  become: true
+  become_user: "{{ item.username }}"
   shell: ~/.fzf/install --no-key-bindings --no-fish --no-completion --no-update-rc
-  with_items: '{{ users }}'
+  with_items: "{{ users }}"
   when: users is defined
 
 #- name: Docker autocompletion
-  #  become: yes
-  #become_user: '{{ item.username}}'
-  #shell: |
+#  become: true
+#become_user: '{{ item.username}}'
+#shell: |
 #  curl -fLo  ~/.oh-my-zsh/plugins/docker/_docker https://raw.githubusercontent.com/docker/cli/master/contrib/completion/zsh/_docker
-  # with_items: '{{ users }}'
-  #when: users is defined
+# with_items: '{{ users }}'
+#when: users is defined
 
 #- name: Copy my .zshrc
 #  command: curl -LSso ~/.zshrc https://raw.github.com/ChengLong/configs/master/.zshrc
 
 #- name: Copy my .zsh_aliases
-  #  command: curl -LSso ~/.zsh_aliases https://raw.github.com/ChengLong/configs/master/.zsh_aliases
+#  command: curl -LSso ~/.zsh_aliases https://raw.github.com/ChengLong/configs/master/.zsh_aliases
 
 #- name: Copy my pygmalion.zsh-theme
 #  command: curl -LSso ~/.oh-my-zsh/themes/pygmalion.zsh-theme https://raw.github.com/ChengLong/configs/master/pygmalion.zsh-theme
@@ -132,10 +131,9 @@
   register: zsh_path
 
 - name: set default shell for users
-  become: yes
+  become: true
   user:
-    name: '{{ item.username }}'
+    name: "{{ item.username }}"
     shell: /bin/zsh
-  with_items: '{{ users }}'
-  when: users is defined 
-
+  with_items: "{{ users }}"
+  when: users is defined

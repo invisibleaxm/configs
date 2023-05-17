@@ -13,19 +13,19 @@
       - username: alex
     email: me@mail.com
   pre_tasks:
-  - name: Adds git repo
-    become: yes 
-    apt_repository:
-      repo: ppa:git-core/ppa
-  - name: Update Apt
-    become: true
-    apt:
-      force_apt_get: true
-      update_cache: true
-      state: present
-    tags:
-      - install
-      - core
+    - name: Adds git repo
+      become: yes
+      apt_repository:
+        repo: ppa:git-core/ppa
+    - name: Update Apt
+      become: true
+      apt:
+        force_apt_get: true
+        update_cache: true
+        state: present
+      tags:
+        - install
+        - core
   tasks:
     - include_tasks: tasks/core-setup-{{ansible_os_family}}.yml
     - name: Powershell (x86 setup)
@@ -44,7 +44,7 @@
     - include_tasks: tasks/homebrew-{{ansible_os_family}}.yml
       when: ansible_architecture == "x86_64"
     - name: Neovim setup
-      include_tasks: 
+      include_tasks:
         file: tasks/neovim-{{ansible_os_family}}.yml
         apply:
           tags: neovim
@@ -52,10 +52,10 @@
         - neovim
       when: ansible_architecture == "x86_64"
     - include_tasks: tasks/preferences.yml
-   #- include_tasks: tasks/hardening-{{ansible_os_family}}.yml
+    #- include_tasks: tasks/hardening-{{ansible_os_family}}.yml
 
   handlers:
-  - name: Reload SSH
-    service:
-      name: sshd
-      state: reloaded
+    - name: Reload SSH
+      service:
+        name: sshd
+        state: reloaded

@@ -4,7 +4,7 @@
     dest: /tmp/packages-microsoft-prod.deb
 
 - name: Install MS product repository
-  apt: 
+  apt:
     deb: /tmp/packages-microsoft-prod.deb
   become: true
 
@@ -16,14 +16,14 @@
   become: true
 
 - name: Install PowerShell
-  become: yes
+  become: true
   apt:
     name: powershell
     state: latest
     update_cache: yes
 
 - name: Install dotnet-sdk 7
-  become: yes
+  become: true
   apt:
     name: dotnet-sdk-7.0
     state: latest
@@ -33,7 +33,6 @@
   shell: |
     curl -sL https://aka.ms/InstallAzureCLIDeb | sudo bash
   register: shell_output
-
 
 - name: register azure modules existence
   shell: pwsh -c "Get-Module -ListAvailable" | awk 'BEGIN{cnt=0} /Azure/{ cnt++ } END{if (cnt >= 1) {print "1"} else {print "0"}}'
@@ -59,5 +58,3 @@
   when:
     - azure_pwsh_module.stdout == "0"
     #    - pwsh_install_azure_cli|default(false)
-
-

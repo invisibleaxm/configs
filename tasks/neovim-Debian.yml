@@ -1,13 +1,13 @@
 ---
 - name: Install formula foo with 'brew' from cask
   community.general.homebrew:
-    name: 
-      - neovim 
+    name:
+      - neovim
       - lazygit
     state: present
 
 - name: see if neovim config folder exists
-  stat: 
+  stat:
     path: ~/.config/nvim
   register: st
 
@@ -31,10 +31,10 @@
     && curl -fLO https://github.com/Azure/bicep/releases/latest/download/bicep-langserver.zip \
     && rm -rf /usr/local/bin/bicep-langserver \
     && unzip -d /usr/local/bin/bicep-langserver bicep-langserver.zip)
-  become: yes
+  become: true
 
 - name: clone lazyvim
   git:
-    repo: 'https://github.com/invisibleaxm/lazyvim.git'
+    repo: "https://github.com/invisibleaxm/lazyvim.git"
     version: main
-    dest: '~/.config/nvim'
+    dest: "~/.config/nvim"
