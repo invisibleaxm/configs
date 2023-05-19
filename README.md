@@ -23,6 +23,7 @@ the tools i like using.
 | powershell   | shell,scripting  | linux     |
 | az-cli       | azure, scripting | linux     |
 | az functions | serverless dev   | linux     |
+| starship  | prompt improvement | |
 | ssh-keys     |                  |           |
 | gh           | github           |           |
 
