@@ -1,29 +1,31 @@
 ---
 - name: Check if homebrew is installed
   block:
-    - name: try using homebrew in check_mode (no changes)
-      homebrew:
+    - name: Try using homebrew in check_mode (no changes)
+      community.general.homebrew:
         path: "/usr/local/bin:/opt/homebrew/bin:/home/linuxbrew/.linuxbrew/bin"
         update_homebrew: true
       check_mode: true
 
     - name: Homebrew available
-      debug:
+      ansible.builtin.debug:
         msg: Homebrew is installed
-    
+
   rescue:
-    - name: install homebrew
-      shell:  |
+    - name: Install homebrew # noqa fqcn
+      shell: |
         /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
         test -d ~/.linuxbrew && eval "$(~/.linuxbrew/bin/brew shellenv)"
         test -d /home/linuxbrew/.linuxbrew && eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+      changed_when: true
 
 - name: Install formula foo with 'brew' from cask
   community.general.homebrew:
-    name: 
+    name:
       - bitwarden-cli
       - thefuck
       - fd
+      - starship
+      - wezterm
     state: present
   when: ansible_architecture == "x86_64"
-

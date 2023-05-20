@@ -1,4 +1,5 @@
 - hosts: localhost
+  name: Desktop Configuration
   vars:
     allowed_ssh_networks:
       - 192.168.0.0/24
@@ -14,12 +15,12 @@
     email: me@mail.com
   pre_tasks:
     - name: Adds git repo
-      become: yes
-      apt_repository:
+      become: true
+      ansible.builtin.apt_repository:
         repo: ppa:git-core/ppa
     - name: Update Apt
       become: true
-      apt:
+      ansible.builtin.apt:
         force_apt_get: true
         update_cache: true
         state: present
@@ -27,9 +28,10 @@
         - install
         - core
   tasks:
-    - include_tasks: tasks/core-setup-{{ansible_os_family}}.yml
-    - name: Powershell (x86 setup)
-      include_tasks:
+    - include_tasks:
+        file: tasks/core-setup-{{ansible_os_family}}.yml
+    - include_tasks:
+        name: Powershell (x86 setup)
         file: tasks/powershell-{{ansible_os_family}}.yml
         apply:
           tags: powershell

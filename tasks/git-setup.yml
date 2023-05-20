@@ -2,8 +2,8 @@
 - name: Git personal setup email
   become: true
   become_user: "{{ item.username }}"
-  git_config:
-    name: user.email
+  community.general.git_config:
+    name: { { user.email } }
     scope: global
     value: "{{ item.email}}"
   with_items: "{{ users }}"
@@ -12,8 +12,8 @@
 - name: Git personal setup name
   become: true
   become_user: "{{ item.username }}"
-  git_config:
-    name: user.name
+  community.general.git_config:
+    name: { { user.name } }
     scope: global
     value: "{{ item.name }}"
   with_items: "{{ users }}"

@@ -45,7 +45,7 @@
   changed_when:
     - pwsh_update.stdout != ""
 
-- name: install pwsh azure modules
+- name: Install pwsh azure modules
   command: "{{ item }}"
   with_items:
     - "pwsh -noni -c 'Install-Module PSReadLine'"
@@ -55,6 +55,9 @@
     - "pwsh -noni -c 'Install-Module psake'"
     - "pwsh -noni -c 'Install-Module PSScriptAnalyzer'"
     - "pwsh -noni -c 'Install-Module AZ'"
+    - "pwsh -noni -c 'Install-Module PSFzf'"
+    - "pwsh -noni -c 'Install-Module DockerCompletion'"
+    - "pwsh -noni -c 'Install-Module Az.Tools.Predictor'"
   when:
     - azure_pwsh_module.stdout == "0"
     #    - pwsh_install_azure_cli|default(false)
