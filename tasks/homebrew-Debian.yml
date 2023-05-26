@@ -19,6 +19,11 @@
         test -d /home/linuxbrew/.linuxbrew && eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
       changed_when: true
 
+- name: Install casks
+  ansible.general.homebrew_cask:
+    name: font-fira-code-nerd-font
+    state: present
+
 - name: Install formula foo with 'brew' from cask
   community.general.homebrew:
     name:
@@ -27,5 +32,7 @@
       - fd
       - starship
       - wezterm
+      - zoxide
+      - ansigle-lint
     state: present
   when: ansible_architecture == "x86_64"
