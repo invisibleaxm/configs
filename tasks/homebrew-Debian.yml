@@ -30,6 +30,7 @@
       - bitwarden-cli
       - thefuck
       - fd
+      - pandoc
       - starship
       - wezterm
       - zoxide
