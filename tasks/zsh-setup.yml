@@ -101,7 +101,7 @@
     depth: 1
   with_items: "{{ users }}"
   register: install_fzf
-  when: users is defined and fzf.stat is defined
+  when: users is defined and fzf.stat is defined and not fzf.stat.exists
 
 - name: Run install script # noqa no-changed-when
   become: true
@@ -109,7 +109,7 @@
   shell: |
     ~/.fzf/install --no-key-bindings --no-fish --no-completion --no-update-rc
   with_items: "{{ users }}"
-  when: users is defined and install.fzf id defined
+  when: users is defined and install_fzf is defined
 
 - name: Creates directory
   ansible.builtin.file:
