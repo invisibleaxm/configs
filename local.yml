@@ -28,16 +28,19 @@
         - install
         - core
   tasks:
-    - include_tasks:
+    - name: core config
+      include_tasks:
         file: tasks/core-setup-{{ansible_os_family}}.yml
-    - include_tasks:
-        name: Powershell (x86 setup)
+    - name: Powershell (x86 setup)
+      include_tasks:
         file: tasks/powershell-{{ansible_os_family}}.yml
         apply:
           tags: powershell
       tags: powershell
       when: ansible_architecture == "x86_64"
-    - include_tasks: tasks/zsh-setup.yml
+    - name: Configure zsh
+      ansible.builtin.include_tasks:
+        file: tasks/zsh-setup.yml
     - include_role:
         name: hussainweb.chezmoi
       vars:
