@@ -8,6 +8,8 @@
       - wget
       - curl
       - git
+      - gpg
+      - pass
     state: present
 
 - name: Install System Packages 2 (lua, unzip, gettext)
