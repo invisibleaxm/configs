@@ -1,23 +1,23 @@
 ---
-#- name: Check if homebrew is installed
-#  block:
-#    - name: Try using homebrew in check_mode (no changes)
-#      community.general.homebrew:
-#        path: "/usr/local/bin:/opt/homebrew/bin:/home/linuxbrew/.linuxbrew/bin"
-#        update_homebrew: true
-#      check_mode: true
+ #- name: Check if homebrew is installed
+ #  block:
+ #    - name: Try using homebrew in check_mode (no changes)
+ #      community.general.homebrew:
+ #        path: "/usr/local/bin:/opt/homebrew/bin:/home/linuxbrew/.linuxbrew/bin"
+ #        update_homebrew: true
+ #      check_mode: true
 
-#    - name: Homebrew available
-#      ansible.builtin.debug:
-#        msg: Homebrew is installed
+ #    - name: Homebrew available
+ #      ansible.builtin.debug:
+ #        msg: Homebrew is installed
 
-#  rescue:
-#    - name: Install homebrew # noqa fqcn
-#      shell: |
-#        /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-#        test -d ~/.linuxbrew && eval "$(~/.linuxbrew/bin/brew shellenv)"
-#        test -d /home/linuxbrew/.linuxbrew && eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
-#      changed_when: true
+ #  rescue:
+ #    - name: Install homebrew # noqa fqcn
+ #      shell: |
+ #        /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+ #        test -d ~/.linuxbrew && eval "$(~/.linuxbrew/bin/brew shellenv)"
+ #        test -d /home/linuxbrew/.linuxbrew && eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+ #      changed_when: true
 
 - name: Tap a Homebrew repository, state present
   community.general.homebrew_tap:
@@ -34,14 +34,10 @@
       - starship
       - zoxide
       - ansible-lint
-      - wezterm
+      # - wezterm
     state: present
   when: ansible_architecture == "x86_64"
-
-
-
-
-#- name: Install casks
-#  community.general.homebrew_cask:
-#    name: font-fira-code-nerd-font
-#    state: present
+ #- name: Install casks
+ #  community.general.homebrew_cask:
+ #    name: font-fira-code-nerd-font
+ #    state: present

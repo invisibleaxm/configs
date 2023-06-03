@@ -45,8 +45,13 @@
   changed_when:
     - pwsh_update.stdout != ""
 
+- name: set trusted psgallery repo 
+  command: "pwsh -noni -c 'Set-PSRepository -Name psgallery -InstallationPolicy Trusted'"  
+
 - name: Install pwsh azure modules
   command: "{{ item }}"
+  become: true
+  become_user: "alex"
   with_items:
     - "pwsh -noni -c 'Install-Module PSReadLine'"
     - "pwsh -noni -c 'Install-Module Posh-Git'"

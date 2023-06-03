@@ -36,6 +36,7 @@
       - fd-find
       - ripgrep
       - gh
+      - xclip
       - tree
     state: present
 
