@@ -45,8 +45,8 @@
   changed_when:
     - pwsh_update.stdout != ""
 
-- name: set trusted psgallery repo 
-  command: "pwsh -noni -c 'Set-PSRepository -Name psgallery -InstallationPolicy Trusted'"  
+- name: set trusted psgallery repo
+  command: "pwsh -noni -c 'Set-PSRepository -Name psgallery -InstallationPolicy Trusted'"
 
 - name: Install pwsh azure modules
   command: "{{ item }}"
@@ -64,6 +64,7 @@
     - "pwsh -noni -c 'Install-Module DockerCompletion'"
     - "pwsh -noni -c 'Install-Module Az.Tools.Predictor'"
     - "pwsh -noni -c 'Install-Module -Name PSDesiredStateConfiguration -RequiredVersion 3.0.0-beta1 -AllowPrerelease'"
+    - "pwsh -noni -c 'Install-Module -Name GuestConfiguration'"
   when:
     - azure_pwsh_module.stdout == "0"
     #    - pwsh_install_azure_cli|default(false)
