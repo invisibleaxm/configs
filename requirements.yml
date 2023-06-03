@@ -4,3 +4,4 @@ collections:
 
 roles:
   - name: hussainweb.chezmoi
+  - name: markosamuli.linuxbrew

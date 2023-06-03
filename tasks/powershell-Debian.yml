@@ -58,6 +58,7 @@
     - "pwsh -noni -c 'Install-Module PSFzf'"
     - "pwsh -noni -c 'Install-Module DockerCompletion'"
     - "pwsh -noni -c 'Install-Module Az.Tools.Predictor'"
+    - "pwsh -noni -c 'Install-Module -Name PSDesiredStateConfiguration -RequiredVersion 3.0.0-beta1 -AllowPrerelease'"
   when:
     - azure_pwsh_module.stdout == "0"
     #    - pwsh_install_azure_cli|default(false)

@@ -46,6 +46,14 @@
       vars:
         chezmoi_init_url: "invisibleaxm"
         chezmoi_install_method: "download"
+    - include_role:
+        name: markosamuli.linuxbrew
+        apply:
+          tags: homebrew
+      vars:
+        linuxbrew_use_installer: true
+      tags: homebrew
+      when: ansible_architecture == "x86_64"    
     - name: homebrew
       include_tasks:
         file: tasks/homebrew-{{ansible_os_family}}.yml

@@ -80,7 +80,7 @@
   become_user: "{{ item.username }}"
   ansible.builtin.git:
     repo: "https://github.com/marlonrichert/zsh-autocomplete.git"
-    version: main
+    version: 23.05.24
     dest: "~/.oh-my-zsh/custom/plugins/zsh-autocomplete"
     depth: 1
   with_items: "{{ users }}"

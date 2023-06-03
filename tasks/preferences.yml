@@ -54,3 +54,34 @@
 
 - name: Chezmoi apply
   shell: chezmoi apply --force
+
+- name: ensure fonts directory
+  file:
+    path: "{{ lookup('env', 'HOME') }}/.fonts"
+    state: directory
+
+- name: Symbols Only exists
+  shell: "ls {{ lookup('env', 'HOME') }}/.fonts/Symbols*"
+  register: symbols_only_exists
+  ignore_errors: yes
+
+- name: Download Symbols
+  when: symbols_only_exists is failed
+  ansible.builtin.unarchive:
+    src: https://github.com/ryanoasis/nerd-fonts/releases/download/v3.0.1/NerdFontsSymbolsOnly.zip
+    dest: "{{ lookup('env', 'HOME') }}/.fonts/"
+    remote_src: yes
+
+- name: JetBRainsMono NF exists
+  shell: "ls {{ lookup('env', 'HOME') }}/.fonts/JetBrains*Nerd*"
+  register: jetbrains_nf_exists
+  ignore_errors: yes
+
+- name: Download JetBRainsMono NF
+  when: jetbrains_nf_exists is failed
+  ansible.builtin.unarchive:
+    src: https://github.com/ryanoasis/nerd-fonts/releases/download/v3.0.1/JetBrainsMono.zip
+    dest: "{{ lookup('env', 'HOME') }}/.fonts/"
+    remote_src: yes
+
+
