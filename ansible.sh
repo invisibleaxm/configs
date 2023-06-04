@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
-ansible_installed=$(dpkg -l | grep -c ansible)
-if [ "$ansible_installed" = "0" ]; then
+ansible_exists=$(command -v ansible)
+if [ ! "$ansible_exists" ]; then
 	sudo apt install -y software-properties-common
 	sudo add-apt-repository --yes --update ppa:ansible/ansible
 	sudo apt update
