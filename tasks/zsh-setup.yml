@@ -92,6 +92,7 @@
   ansible.builtin.git:
     repo: "https://github.com/tmux-plugins/tpm"
     dest: "~/.tmux/plugins/tpm"
+    version: master
     depth: 1
   with_items: "{{ users }}"
   when: users is defined
