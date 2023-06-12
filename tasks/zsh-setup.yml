@@ -86,6 +86,18 @@
   with_items: "{{ users }}"
   when: users is defined
 
+- name: Clone tmux plugin manager tpm
+  become: true
+  become_user: "{{ item.username }}"
+  ansible.builtin.git:
+    repo: "https://github.com/tmux-plugins/tpm"
+    dest: "~/.tmux/plugins/tpm"
+    version: master
+    depth: 1
+  with_items: "{{ users }}"
+  when: users is defined
+
+
 - name: Get file stat to determine if we already have a .fzf
   ansible.builtin.stat:
     path: ~/.fzf
