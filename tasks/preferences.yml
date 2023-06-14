@@ -1,48 +1,50 @@
 ---
 - name: Creates directory
-  file:
+  ansible.builtin.file:
     path: "{{ item }}"
     state: directory
   loop:
     - ~/dev/
     - ~/dev/personal
     - ~/dev/work
+    - ~/dev/tools
+    - ~/dev/tools/snaps
 
 - name: Add admin group
-  group:
+  ansible.builtin.group:
     name: admin
     state: present
   become: true
 
-- name: adding existing user '{{ user }}' to group sudo
-  user:
+- name: Adding existing user to group sudo '{{ user }}'
+  ansible.builtin.user:
     name: "{{ item.username }}"
     groups: admin,sudo
-    append: yes
+    append: true
   become: true
   with_items: "{{ users }}"
   when: users is defined
 
-#- name: Ensure .ssh directory exists.
+# - name: Ensure .ssh directory exists.
 #  file:
 #    dest: "{{ dest_key | dirname }}"
 #    mode: 0700
 #    state: directory
 #
-#- name: Install ssh key
+# - name: Install ssh key
 #  copy:
 #    src: "{{ source_key }}"
 #    dest: "{{ dest_key }}"
 #    mode: 0600
 #
-#- name: Install ssh key public
+# - name: Install ssh key public
 #  copy:
 #    src: "{{ source_key }}.pub"
 #    dest: "{{ dest_key }}.pub"
 #    mode: 0644
 - name: Install mkdocs
   become: true
-  apt:
+  ansible.builtin.apt:
     name:
       - mkdocs
     state: present
@@ -53,35 +55,46 @@
     executable: pip3
 
 - name: Chezmoi apply
-  shell: chezmoi apply --force
+  ansible.builtin.shell: chezmoi apply --force
 
-- name: ensure fonts directory
-  file:
+- name: Ensure fonts directory
+  ansible.builtin.file:
     path: "{{ lookup('env', 'HOME') }}/.fonts"
     state: directory
 
 - name: Symbols Only exists
-  shell: "ls {{ lookup('env', 'HOME') }}/.fonts/Symbols*"
+  ansible.builtin.shell: "ls {{ lookup('env', 'HOME') }}/.fonts/Symbols*"
   register: symbols_only_exists
-  ignore_errors: yes
+  ignore_errors: true
 
 - name: Download Symbols
   when: symbols_only_exists is failed
   ansible.builtin.unarchive:
     src: https://github.com/ryanoasis/nerd-fonts/releases/download/v3.0.1/NerdFontsSymbolsOnly.zip
     dest: "{{ lookup('env', 'HOME') }}/.fonts/"
-    remote_src: yes
+    remote_src: true
 
 - name: JetBRainsMono NF exists
-  shell: "ls {{ lookup('env', 'HOME') }}/.fonts/JetBrains*Nerd*"
+  ansible.builtin.shell: "ls {{ lookup('env', 'HOME') }}/.fonts/JetBrains*Nerd*"
   register: jetbrains_nf_exists
-  ignore_errors: yes
+  ignore_errors: true
 
 - name: Download JetBRainsMono NF
   when: jetbrains_nf_exists is failed
   ansible.builtin.unarchive:
     src: https://github.com/ryanoasis/nerd-fonts/releases/download/v3.0.1/JetBrainsMono.zip
     dest: "{{ lookup('env', 'HOME') }}/.fonts/"
-    remote_src: yes
+    remote_src: true
 
+- name: FiraCode NF exists
+  ansible.builtin.shell: "ls {{ lookup('env', 'HOME') }}/.fonts/FiraCode*Nerd*"
+  register: firacode_nf_exists
+  ignore_errors: true
+
+- name: Download FiraCode NF
+  when: firacode_nf_exists is failed
+  ansible.builtin.unarchive:
+    src: https://github.com/ryanoasis/nerd-fonts/releases/download/v3.0.2/FiraCode.zip
+    dest: "{{ lookup('env', 'HOME') }}/.fonts/"
+    remote_src: true
 

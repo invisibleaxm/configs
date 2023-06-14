@@ -1,5 +1,5 @@
 ---
- #- name: Check if homebrew is installed
+ # - name: Check if homebrew is installed
  #  block:
  #    - name: Try using homebrew in check_mode (no changes)
  #      community.general.homebrew:
@@ -35,10 +35,11 @@
       - zoxide
       - ansible-lint
       - tmux
+      - silicon
       # - wezterm
     state: present
   when: ansible_architecture == "x86_64"
- #- name: Install casks
+ # - name: Install casks
  #  community.general.homebrew_cask:
  #    name: font-fira-code-nerd-font
  #    state: present
