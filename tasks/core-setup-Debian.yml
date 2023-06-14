@@ -10,6 +10,7 @@
       - git
       - gpg
       - pass
+      - openssh-server
     state: present
 
 - name: Install System Packages 2 (lua, unzip, gettext)
