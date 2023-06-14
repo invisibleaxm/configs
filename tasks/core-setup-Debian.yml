@@ -34,7 +34,6 @@
       - python3-venv
       - apt-transport-https
       - software-properties-common
-      - tmux
       - fd-find
       - ripgrep
       - gh

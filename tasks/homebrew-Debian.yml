@@ -34,6 +34,7 @@
       - starship
       - zoxide
       - ansible-lint
+      - tmux
       # - wezterm
     state: present
   when: ansible_architecture == "x86_64"
