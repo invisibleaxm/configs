@@ -36,6 +36,9 @@
       - ansible-lint
       - tmux
       - silicon
+      - bat
+      - tree
+      - highlight
       # - wezterm
     state: present
   when: ansible_architecture == "x86_64"
