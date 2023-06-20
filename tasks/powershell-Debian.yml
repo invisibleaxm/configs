@@ -4,12 +4,12 @@
     dest: /tmp/packages-microsoft-prod.deb
 
 - name: Install MS product repository
-  apt:
+  ansible.builtin.apt:
     deb: /tmp/packages-microsoft-prod.deb
   become: true
 
 - name: Copy preferences to install dotnet from microsoft repo
-  copy:
+  ansible.builtin.copy:
     src: etc/apt/preferences
     dest: /etc/apt/preferences
     force: true
@@ -17,39 +17,39 @@
 
 - name: Install PowerShell
   become: true
-  apt:
+  ansible.builtin.apt:
     name: powershell
     state: latest
-    update_cache: yes
+    update_cache: true
 
 - name: Install dotnet-sdk 7
   become: true
-  apt:
+  ansible.builtin.apt:
     name: dotnet-sdk-7.0
     state: latest
-    update_cache: yes
+    update_cache: true
 
 - name: Instal azure-cli using command
-  shell: |
+  ansible.builtin.shell: |
     curl -sL https://aka.ms/InstallAzureCLIDeb | sudo bash
   register: shell_output
 
 - name: register azure modules existence
-  shell: pwsh -c "Get-Module -ListAvailable" | awk 'BEGIN{cnt=0} /Azure/{ cnt++ } END{if (cnt >= 1) {print "1"} else {print "0"}}'
+  ansible.builtin.shell: pwsh -c "Get-Module -ListAvailable" | awk 'BEGIN{cnt=0} /Azure/{ cnt++ } END{if (cnt >= 1) {print "1"} else {print "0"}}'
   register: azure_pwsh_module
   changed_when: false
 
-- name: update pwsh help
-  command: "pwsh -noni -c 'Update-Help'"
+- name: Update pwsh help
+  ansible.builtin.command: "pwsh -noni -c 'Update-Help'"
   register: pwsh_update
   changed_when:
     - pwsh_update.stdout != ""
 
-- name: set trusted psgallery repo
-  command: "pwsh -noni -c 'Set-PSRepository -Name psgallery -InstallationPolicy Trusted'"
+- name: Set trusted psgallery repo
+  ansible.builtin.command: "pwsh -noni -c 'Set-PSRepository -Name psgallery -InstallationPolicy Trusted'"
 
 - name: Install pwsh azure modules
-  command: "{{ item }}"
+  ansible.builtin.command: "{{ item }}"
   become: true
   become_user: "alex"
   with_items:
@@ -68,3 +68,9 @@
   when:
     - azure_pwsh_module.stdout == "0"
     #    - pwsh_install_azure_cli|default(false)
+
+- name: Install azurite
+  community.general.npm:
+      name: azurite
+      global: true
+
